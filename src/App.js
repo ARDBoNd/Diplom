@@ -9,7 +9,9 @@ const useStyles = makeStyles((theme) => ({
         width: 500,
         height: 200,
         border: '1px solid black',
-        padding: 30
+        padding: 30,
+        borderRadius: 15,
+        backgroundColor: theme.palette.background.paper
     },
     container: {
         display: 'flex',
@@ -17,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         flexDirection: 'column',
         alignContent: 'center',
-        height: '100vh'
+        height: '100vh',
     },
     input: {
         width: '100%',
@@ -34,7 +36,7 @@ function App() {
                 <form className={classes.form} noValidate autoComplete="off">
                     <TextField className={classes.input} id="standard-basic" label="Login"/>
                     <TextField className={classes.input} id="standard-basic" type="password" label="Password"/>
-                    <Button variant="contained" color="primary" href="#contained-buttons">
+                    <Button variant="contained" color="secondary" href="#contained-buttons">
                         Login
                     </Button>
                 </form>
