@@ -31,7 +31,7 @@ function App() {
 
     return (
     <BrowserRouter>
-        <AppBar position="static">
+        <AppBar style={{backgroundColor: 'black'}} position="static">
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <MenuIcon />
