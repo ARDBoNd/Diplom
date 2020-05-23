@@ -33,12 +33,27 @@ const Registration = () => {
             <TextField className={classes.input} id="email" label="Email"/>
             <TextField className={classes.input} id="password" type="password" label="Password"/>
             <TextField className={classes.input} id="password-confirm" type="password" label="Confirm Password"/>
-            <Button variant="contained" color="secondary" href="#contained-buttons">
+            <Button 
+            onClick={()=>{alert('You just clicked me!');}}
+            variant="contained" 
+            color="secondary" 
+            href="#contained-buttons">
                 Register
             </Button>
         </form>
     </div>);
 };
+
+// indexdb, firebase, mongodb
+// 1. Тебе необходимо выбрать базу данных
+// 2. Затем, нужно научиться работать с ней: создать её, научиться сохранять туда данные, и научиться загружать из неё данные.
+// 3. После этого, в Registration компоненте (это файл, который ты сейчас читаешь), 
+// нужно прикрутить к кнопке Register функциональность сохранения email и пароля в базу данных.
+// 4. То есть, когда человек ввёл данные в форму, после нажатия кнопки, должна запуститься функция SAVE базы данных.
+// 5. После этого, в базе данных появится информация о этом пользователе.
+// 6. Затем, когда это будет готово, нужно будет прикрутить к кнопке Login - функцию загрузки данных из базы данных.
+// 7. Затем, если пользователь нашёлся, то мы попадаем на сайт (откроется другой компонент)
+// 8. Этот компонент ещё нужно создать (нужно подумать, чтобы это было связано с географией).
 
 
 export default Registration;
