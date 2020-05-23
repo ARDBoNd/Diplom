@@ -1,48 +1,54 @@
 import React from 'react';
 import './App.css';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import makeStyles from "@material-ui/core/styles/makeStyles";
+
+import Login from './Login/Login';
+import Registration from './Registration/Registration';
+import { AppBar, IconButton, Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import MenuIcon from '@material-ui/icons/Menu';
+import { Router, Route, Link, BrowserRouter, Switch } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
-    form: {
-        width: 500,
-        height: 200,
-        border: '1px solid black',
-        padding: 30,
-        borderRadius: 15,
-        backgroundColor: theme.palette.background.paper
+    root: {
+      flexGrow: 1,
     },
-    container: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        alignContent: 'center',
-        height: '100vh',
+    menuButton: {
+      marginRight: theme.spacing(2),
     },
-    input: {
-        width: '100%',
-        marginBottom: 30
+    title: {
+      flexGrow: 1,
+    },
+    link: {
+        textDecoration: 'none',
+        color: 'white'
     }
-}));
+  }));
 
 function App() {
     const classes = useStyles();
 
     return (
-        <React.Fragment>
-            <div className={classes.container}>
-                <form className={classes.form} noValidate autoComplete="off">
-                    <TextField className={classes.input} id="standard-basic" label="Login"/>
-                    <TextField className={classes.input} id="standard-basic" type="password" label="Password"/>
-                    <Button variant="contained" color="secondary" href="#contained-buttons">
-                        Login
-                    </Button>
-                </form>
-            </div>
-        </React.Fragment>
-    );
+    <BrowserRouter>
+        <AppBar position="static">
+                <Toolbar>
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" className={classes.title}>
+                        Kerim's Diploma
+                    </Typography>
+                    <Button color="inherit"><Link className={classes.link} to="/login">Login</Link></Button>
+                    <Button color="inherit"><Link className={classes.link} to="/signup">Registration</Link></Button>
+                </Toolbar>
+            </AppBar>
+            <Switch>
+                {/* <Route path="/" component={null}/> */}
+                <Route path="/login" component={Login}/>
+                <Route path="/signup" component={Registration}/>
+            </Switch>
+    </BrowserRouter>)
 }
 
 export default App;
