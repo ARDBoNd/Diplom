@@ -10,8 +10,10 @@
     "@testing-library/user-event": "^7.2.1",
     "body-parser": "^1.19.0",
     "mongodb": "^3.5.7",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-i18next": "^11.5.0",
     "react-indexed-db": "^1.0.12",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1"
