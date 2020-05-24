@@ -9,12 +9,12 @@ const { MongoClient } = require('mongodb');
 
 const app = express();
 
-let allowCrossDomain = function(req, res, next) {
+let allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Headers', "*");
     next();
-  }
-  app.use(allowCrossDomain);
+}
+app.use(allowCrossDomain);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -94,19 +94,29 @@ MongoClient.connect('mongodb+srv://Kerim:kerim2020@diploma-99zqy.mongodb.net/tes
         console.log('We are live on ' + port);
     });
 
-    app.post('/user', function (req, res, next) {
+    app.post('/register', function (req, res, next) {
         const body = req.body;
-    
+
         console.log(req, body);
-    
+
         var dbo = database.db("mydb");
-    
+
         dbo.collection('users').insertOne(body, (err, results) => {
-             console.log('The user has been added');
-             res.send({
-                 status: 'OK'
-             });
-         });
+            console.log('The user has been added');
+            res.send({
+                status: 'OK'
+            });
+        });
+    });
+
+    app.post('/login', function (req, res, next) {
+        const body = req.body;
+        dbo.collection("users").find({email: body.login}).toArray(function(err, result) {
+          if (err) throw err;
+          res.send({
+              status: !!(result.length && body.password === result[0].password)
+          });
+        });
     });
 });
 

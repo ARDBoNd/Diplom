@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         flexDirection: 'column',
         alignContent: 'center',
-        height: '100vh',
+        height: '800px',
     },
     input: {
         width: '100%',
@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 const Registration = () => {
     const classes = useStyles();
     const [input, handleInputChange] = useInputChange()
+    const [flag, setRegistered] = useState(false);
 
     // const makeGetRequest = () => {
     //     return fetch("http://localhost:3001/users", {mode: 'cors'})
@@ -46,27 +47,39 @@ const Registration = () => {
     };
 
     const sendUser = () => {
-        debugger;
         console.log(input);
-        fetch('http://localhost:3001/user', requestOptions)
+        fetch('http://localhost:3001/register', requestOptions)
             .then(response => response.json())
-            .then(data => console.log(data));
+            .then(data => {
+                if (data.status === 'OK') {
+                   setRegistered(true);
+                }
+            });
     };
 
-    return (<div className={classes.container}>
-        <form className={classes.form} noValidate autoComplete="off">
-            <TextField className={classes.input} name="email" label="Email"  onChange={handleInputChange}/>
-            <TextField className={classes.input} name="password" type="password" label="Password"  onChange={handleInputChange} />
-            <TextField className={classes.input} name="password-confirm" type="password" label="Confirm Password"  onChange={handleInputChange} />
-            <Button
-                onClick={sendUser}
-                variant="contained"
-                color="secondary"
-                href="#contained-buttons">
-                Register
-            </Button>
-        </form>
-    </div>);
+    return (
+        <div>
+            {flag
+                ? <div className={classes.container}>
+                    Congratulations, the user has been created!
+                </div>
+                : <div className={classes.container}>
+                    <form className={classes.form} noValidate autoComplete="off">
+                        <TextField className={classes.input} name="email" label="Email" onChange={handleInputChange} />
+                        <TextField className={classes.input} name="password" type="password" label="Password" onChange={handleInputChange} />
+                        <TextField className={classes.input} name="password-confirm" type="password" label="Confirm Password" onChange={handleInputChange} />
+                        <Button
+                            onClick={sendUser}
+                            variant="contained"
+                            color="secondary"
+                            href="#contained-buttons">
+                            Register
+                    </Button>
+                    </form>
+                </div>
+            }
+        </div>
+    );
 };
 
 // научиться сохранять туда данные, и научиться загружать из неё данные.
