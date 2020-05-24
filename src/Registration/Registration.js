@@ -28,16 +28,31 @@ const useStyles = makeStyles((theme) => ({
 const Registration = () => {
     const classes = useStyles();
 
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            email: 'kerim591@gmail.com',
+            password: 'parol'
+        })
+    };
+
+    const sendUser = () => {
+        fetch('http://localhost:3001/user', requestOptions)
+        .then(response => response.json())
+        .then(data => console.log(data));
+    };
+
     return (<div className={classes.container}>
         <form className={classes.form} noValidate autoComplete="off">
-            <TextField className={classes.input} id="email" label="Email"/>
-            <TextField className={classes.input} id="password" type="password" label="Password"/>
-            <TextField className={classes.input} id="password-confirm" type="password" label="Confirm Password"/>
-            <Button 
-            onClick={()=>{alert('You just clicked me!');}}
-            variant="contained" 
-            color="secondary" 
-            href="#contained-buttons">
+            <TextField className={classes.input} id="email" label="Email" />
+            <TextField className={classes.input} id="password" type="password" label="Password" />
+            <TextField className={classes.input} id="password-confirm" type="password" label="Confirm Password" />
+            <Button
+                onClick={sendUser}
+                variant="contained"
+                color="secondary"
+                href="#contained-buttons">
                 Register
             </Button>
         </form>
