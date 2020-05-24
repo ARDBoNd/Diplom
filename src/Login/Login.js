@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Button from '@material-ui/core/Button';
 import TextInput from '../Common/TextInput';
+import CustomQuiz from '../Quiz/Quiz';
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -95,8 +96,8 @@ const Login = () => {
 
     return (<div>
         {flag ? <div className={classes.container}>
-            You are logged in!
-                </div> : <div className={classes.container}>
+            <CustomQuiz />
+        </div> : <div className={classes.container}>
                 <form className={classes.form} autoComplete="off" onSubmit={handleSubmit}>
                     <TextInput
                         id="email"
