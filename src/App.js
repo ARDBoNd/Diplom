@@ -9,6 +9,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Router, Route, Link, BrowserRouter, Switch } from 'react-router-dom';
+import { initDB } from 'react-indexed-db';
+import { DBConfig } from './DBConfig';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
         color: 'white'
     }
   }));
+
+initDB(DBConfig);
 
 function App() {
     const classes = useStyles();
