@@ -2,24 +2,34 @@ import Quiz from 'react-quiz-component';
 import React from 'react';
 
 export const quiz = {
-    "quizTitle": "React Quiz Component Demo",
-    "quizSynopsis": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim",
+    "quizTitle": "Викторина по географии!",
+    "quizSynopsis": "Описание викторины по географии",
+    "appLocale": {
+        "landingHeaderText": "<questionLength> Questions",
+        "question": "Question",
+        "startQuizBtn": "Start Quiz",
+        "resultFilterAll": "All",
+        "resultFilterCorrect": "Correct",
+        "resultFilterIncorrect": "Incorrect",
+        "nextQuestionBtn": "Next",
+        "resultPageHeaderText": "You have completed the quiz. You got <correctIndexLength> out of <questionLength> questions."
+    },
     "questions": [
         {
-            "question": "How can you access the state of a component from inside of a member function?",
+            "question": "Столица России!",
             "questionType": "text",
-            "questionPic": "https://dummyimage.com/600x400/000/fff&text=X", // if you need to display Picture in Question
+            // "questionPic": "https://dummyimage.com/600x400/000/fff&text=X", // if you need to display Picture in Question
             "answerSelectionType": "single",
             "answers": [
-                "this.getState()",
-                "this.prototype.stateValue",
-                "this.state",
-                "this.values"
+                "Санкт-Петербург",
+                "Симферополь",
+                "Москва",
+                "Мехико"
             ],
             "correctAnswer": "3",
-            "messageForCorrectAnswer": "Correct answer. Good job.",
-            "messageForIncorrectAnswer": "Incorrect answer. Please try again.",
-            "explanation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            "messageForCorrectAnswer": "Правильно! Москва - и никак иначе!",
+            "messageForIncorrectAnswer": "Жесть, такое нужно знать!",
+            "explanation": "Лол, взгляни на карту!",
             "point": "20"
         },
         {

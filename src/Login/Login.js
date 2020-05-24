@@ -13,12 +13,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper
     },
     container: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        alignContent: 'center',
-        height: '800px',
+        display: 'block'
     },
     input: {
         width: '100%',
@@ -56,7 +51,6 @@ const Login = () => {
     };
 
     const handleSubmit = (event) => {
-        debugger;
         event.preventDefault();
         /*
           #TODO Send a message by email
@@ -89,14 +83,14 @@ const Login = () => {
     };
 
     const validateEmail = (mail) => {
-        debugger;
         return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail);
     }
 
-
-    return (<div>
+    return (<React.Fragment>
         {flag ? <div className={classes.container}>
-            <CustomQuiz />
+            <div style={{ display: 'flex', flexWrap: 'wrap', height: '500px' }}>
+                <CustomQuiz />
+            </div>
         </div> : <div className={classes.container}>
                 <form className={classes.form} autoComplete="off" onSubmit={handleSubmit}>
                     <TextInput
@@ -125,7 +119,7 @@ const Login = () => {
                 </form>
             </div>
         }
-    </div>
+    </React.Fragment>
     );
 };
 
