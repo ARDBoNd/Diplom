@@ -2,6 +2,7 @@ import React from 'react';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { useInputChange } from '../Common/useInputChange'
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -27,27 +28,36 @@ const useStyles = makeStyles((theme) => ({
 
 const Registration = () => {
     const classes = useStyles();
+    const [input, handleInputChange] = useInputChange()
+
+    // const makeGetRequest = () => {
+    //     return fetch("http://localhost:3001/users", {mode: 'cors'})
+    //         .then(response => response.json())
+    //         .then(response => response.args);
+    // }
 
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            email: 'kerim591@gmail.com',
-            password: 'parol'
+            email: input.email,
+            password: input.password
         })
     };
 
     const sendUser = () => {
+        debugger;
+        console.log(input);
         fetch('http://localhost:3001/user', requestOptions)
-        .then(response => response.json())
-        .then(data => console.log(data));
+            .then(response => response.json())
+            .then(data => console.log(data));
     };
 
     return (<div className={classes.container}>
         <form className={classes.form} noValidate autoComplete="off">
-            <TextField className={classes.input} id="email" label="Email" />
-            <TextField className={classes.input} id="password" type="password" label="Password" />
-            <TextField className={classes.input} id="password-confirm" type="password" label="Confirm Password" />
+            <TextField className={classes.input} name="email" label="Email"  onChange={handleInputChange}/>
+            <TextField className={classes.input} name="password" type="password" label="Password"  onChange={handleInputChange} />
+            <TextField className={classes.input} name="password-confirm" type="password" label="Confirm Password"  onChange={handleInputChange} />
             <Button
                 onClick={sendUser}
                 variant="contained"

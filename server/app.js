@@ -8,6 +8,14 @@ const path = require('path');
 const { MongoClient } = require('mongodb');
 
 const app = express();
+
+let allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Headers', "*");
+    next();
+  }
+  app.use(allowCrossDomain);
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -72,7 +80,6 @@ MongoClient.connect('mongodb+srv://Kerim:kerim2020@diploma-99zqy.mongodb.net/tes
     dbo.createCollection("users", function (err, res) {
         if (err) throw err;
         console.log("Collection created!");
-        database.close();
     });
 
 
@@ -92,11 +99,14 @@ MongoClient.connect('mongodb+srv://Kerim:kerim2020@diploma-99zqy.mongodb.net/tes
     
         console.log(req, body);
     
-        // var dbo = database.db("mydb");
+        var dbo = database.db("mydb");
     
-        // db.collection('users').insert(body, (err, results) => {
-        //     console.log('The user has been added');
-        // });
+        dbo.collection('users').insertOne(body, (err, results) => {
+             console.log('The user has been added');
+             res.send({
+                 status: 'OK'
+             });
+         });
     });
 });
 
