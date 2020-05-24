@@ -111,7 +111,7 @@ MongoClient.connect('mongodb+srv://Kerim:kerim2020@diploma-99zqy.mongodb.net/tes
 
     app.post('/login', function (req, res, next) {
         const body = req.body;
-        dbo.collection("users").find({email: body.login}).toArray(function(err, result) {
+        dbo.collection("users").find({email: body.email}).toArray(function(err, result) {
           if (err) throw err;
           res.send({
               status: !!(result.length && body.password === result[0].password)
