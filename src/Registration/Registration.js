@@ -95,7 +95,7 @@ const Registration = () => {
     return (
         <div>
             {flag ? <div className={classes.container}>
-                Congratulations, the user has been created!
+                Поздравляем, вы успешно зарегистрировались!
                 </div>
                 : <div className={classes.container}>
                     <form className={classes.form} autoComplete="off" onSubmit={handleSubmit}>

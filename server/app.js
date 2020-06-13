@@ -82,14 +82,6 @@ MongoClient.connect('mongodb+srv://Kerim:kerim2020@diploma-99zqy.mongodb.net/tes
         console.log("Collection created!");
     });
 
-
-    app.get('/users', function (req, res) {
-        res.send('Hello, world!!! I AM A COOL MOTHERFUCKER!!')
-    })
-
-    app.get('/create', function (req, res) {
-    });
-
     app.listen(port, () => {
         console.log('We are live on ' + port);
     });

@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 
+
+import Home from './Home/Home';
 import Login from './Login/Login';
 import Registration from './Registration/Registration';
 import { AppBar, IconButton, Button } from '@material-ui/core';
@@ -42,16 +44,23 @@ function App() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Kerim's Diploma
-                    </Typography>
-          <Button color="inherit"><Link className={classes.link} to="/login">Login</Link></Button>
-          <Button color="inherit"><Link className={classes.link} to="/signup">Registration</Link></Button>
+            <Link
+              className={classes.link}
+              to="/"
+            >
+            <Typography variant="h6" className={classes.title}>
+                География
+              </Typography>
+          </Link>
+
+          <Button color="inherit"><Link className={classes.link} to="/login">Вход</Link></Button>
+          <Button color="inherit"><Link className={classes.link} to="/signup">Регистрация</Link></Button>
         </Toolbar>
       </AppBar>
       <section className={classes.section}>
         <Switch>
           {/* <Route path="/" component={null}/> */}
+          <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Registration} />
         </Switch>
