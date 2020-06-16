@@ -3,6 +3,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import Button from '@material-ui/core/Button';
 import TextInput from '../Common/TextInput';
 import CustomQuiz from '../Quiz/Quiz';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -25,7 +26,15 @@ const Home = () => {
     const classes = useStyles();
 
     return (<React.Fragment>
-      <h1>Добро пожаловать, в обучение географии! :)</h1>
+      <div style={{width: '300px'}}>
+      <h1>Обучение географии</h1>
+        <strong>Добро пожаловать, юный друг! Рады приветствовать вас на нашем сайте. Вас ждут увлекательные тесты и интересная информация о нашей планете!</strong>
+        <Button color="inherit"><Link className={classes.link} to="/login">Вход</Link></Button>
+      <Link  to="/signup"
+      >
+        Создать аккаунт.
+      </Link>
+      </div>
     </React.Fragment>
     );
 };

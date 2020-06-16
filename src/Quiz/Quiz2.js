@@ -259,10 +259,10 @@ export const quiz = {
     ]
 }
 
-const CustomQuiz = () => {
+const CustomQuiz2 = () => {
     return (
         <Quiz quiz={quiz} />
     );
 }
 
-export default CustomQuiz;
+export default CustomQuiz2;

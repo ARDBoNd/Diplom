@@ -3,6 +3,8 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import Button from '@material-ui/core/Button';
 import TextInput from '../Common/TextInput';
 import CustomQuiz from '../Quiz/Quiz';
+import QuizSelector from '../quizSelector/quizSelector';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -30,6 +32,12 @@ const Login = () => {
         password: ""
     });
 
+    const history = useHistory();
+
+    const handleLogin = () => {
+        return flag || localStorage.getItem('geo') === 'logged'
+    }
+
     const handleInputChange = ({ target }) => {
         setLoginData({ ...loginData, [target.name]: target.value });
     };
@@ -38,11 +46,11 @@ const Login = () => {
         const _errors = {};
 
         if (!loginData.email || !validateEmail(loginData.email)) {
-            _errors.email = 'Your email is not valid';
+            _errors.email = 'Ваш email неверно введён!';
         }
 
         if (!loginData.password) {
-            _errors.password = 'Your password is not valid';
+            _errors.password = 'Неверный пароль!';
         }
 
         setErrors(_errors);
@@ -71,10 +79,9 @@ const Login = () => {
                 .then(response => response.json())
                 .then(data => {
                     if (data.status) {
+                        localStorage.setItem('geo', 'logged');
                         setLoggedIn(true);
-                    }
-                    else {
-
+                        history.push('/menu')
                     }
                 });
         };
@@ -87,9 +94,9 @@ const Login = () => {
     }
 
     return (<React.Fragment>
-        {flag ? <div className={classes.container}>
+        {handleLogin() ? <div className={classes.container}>
             <div style={{ display: 'flex', flexWrap: 'wrap', height: '500px' }}>
-                <CustomQuiz />
+                <QuizSelector/>
             </div>
         </div> : <div className={classes.container}>
                 <form className={classes.form} autoComplete="off" onSubmit={handleSubmit}>
@@ -114,7 +121,7 @@ const Login = () => {
                         type="submit"
                         variant="contained"
                         color="secondary">
-                        Login
+                        Вход
                         </Button>
                 </form>
             </div>
